@@ -1,5 +1,5 @@
 import React from "react";
-import { KeyShapeProps } from "./interface";
+import { KeyShapeProps } from "./../interface";
 
 const KeyShape: React.FC<KeyShapeProps> = ({ character }) => {
   return (
