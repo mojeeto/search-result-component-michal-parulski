@@ -10,4 +10,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #d6d3d1;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }

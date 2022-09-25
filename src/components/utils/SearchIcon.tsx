@@ -5,9 +5,8 @@ const SearchIcon: React.FC = () => {
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
-    strokeWidth={1.5}
     stroke="currentColor"
-    className="w-7 h-7"
+    className="stroke-1 w-6 h-6 md:stroke-2 md:w-7 md:h-7"
   >
     <path
       strokeLinecap="round"
