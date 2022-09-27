@@ -37,7 +37,8 @@ const SearchResultOptions: React.FC = () => {
   };
 
   return (
-    <div className="hidden lg:flex items-center border-b-2 text-[16px] md:text-lg justify-between w-full px-5">
+    <div className="hidden lg:flex items-center border-b-2 text-[16px] md:text-lg justify-between w-full px-5 animate-fadeUp"
+      style={{ animationDelay: "0.5s" }}>
       <div className="flex items-center gap-5 relative pb-1" ref={listRef}>
         <CustomText
           className="cursor-pointer !text-gray-700"
