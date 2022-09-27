@@ -1,5 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import useKey from "./hooks/useKey";
 import SearchResultOptions from "./SearchResultOptions";
+import SearchResults from "./SearchResults";
 import KeyShape from "./utils/KeyShape";
 import SearchIcon from "./utils/SearchIcon";
 
@@ -7,16 +9,11 @@ const SearchModalComponent: React.FC = () => {
   const [inputSearchValue, setInputSearchValue] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isSearching, setSearchingState] = useState<boolean>(false);
-  const [searchActive, setSearchActive] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onChangeSearchInput: React.ChangeEventHandler<HTMLInputElement> = ({
     currentTarget: target,
   }) => {
-    if (!searchActive) {
-      setSearchActive(true);
-      return;
-    }
     const newValue = target.value;
     setInputSearchValue(newValue);
     if (newValue !== "") {
@@ -34,27 +31,18 @@ const SearchModalComponent: React.FC = () => {
     setSearchingState(false);
   };
 
-  const onBlurInput: React.FocusEventHandler = (_) => {
-    setSearchActive(false);
-  };
-
-  const keypressEventListener = useCallback((e: KeyboardEvent) => {
-    const key = e.code;
-    if (key === "KeyS") {
-      if (!inputRef.current) {
-        return;
-      }
-      inputRef.current.focus();
-      window.removeEventListener("keypress", keypressEventListener);
+  useKey("KeyS", () => {
+    if (!inputRef.current) {
+      return;
     }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("keypress", keypressEventListener);
-  }, [keypressEventListener, searchActive]);
+    if (document.activeElement === inputRef.current) {
+      return;
+    }
+    inputRef.current.focus();
+  });
 
   return (
-    <div className="flex flex-col gap-5 w-[350px] md:w-[500px] lg:w-[600px] py-5 md:py-7 bg-white rounded-xl text-[18px] md:text-2xl transition-[height] duration-1000 shadow-stone-400 shadow-md">
+    <div className="flex flex-col gap-1 lg:gap-5 w-[350px] md:w-[550px] py-5 md:py-7 bg-white rounded-xl text-[18px] md:text-2xl transition-[height] duration-1000 shadow-stone-400 shadow-md">
       <div className="flex gap-2 items-center text-stone-400 px-3 md:px-5">
         <SearchIcon />
         <input
@@ -63,7 +51,6 @@ const SearchModalComponent: React.FC = () => {
           className="border-none outline-none text-stone-800 placeholder:font-light placeholder:text-stone-400 font-normal flex-1"
           value={inputSearchValue}
           onChange={onChangeSearchInput}
-          onBlur={onBlurInput}
           ref={inputRef}
         />
         {!inputSearchValue ? (
@@ -83,7 +70,7 @@ const SearchModalComponent: React.FC = () => {
       {isSearching && (
         <div className="flex flex-col items-start">
           <SearchResultOptions />
-          <div>{isLoading && "Loading..."}</div>
+          <SearchResults />
         </div>
       )}
     </div>

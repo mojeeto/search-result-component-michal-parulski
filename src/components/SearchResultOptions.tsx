@@ -42,7 +42,7 @@ const SearchResultOptions: React.FC = () => {
         <CustomText
           className="cursor-pointer !text-gray-700"
           onClick={handleUnderlineRef}
-          tagContent="1"
+          tagContent="0"
         >
           <span>All</span>
         </CustomText>
