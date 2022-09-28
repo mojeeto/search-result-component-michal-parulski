@@ -7,9 +7,9 @@ import SearchIcon from "./utils/SearchIcon";
 
 const SearchModalComponent: React.FC = () => {
   const [inputSearchValue, setInputSearchValue] = useState<string>("");
-  const [isLoading, setLoading] = useState<boolean>(false);
   const [isSearching, setSearchingState] = useState<boolean>(false);
   const [modalParentHeight, setModalParentHeight] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -19,17 +19,14 @@ const SearchModalComponent: React.FC = () => {
     const newValue = target.value;
     setInputSearchValue(newValue);
     if (newValue !== "") {
-      setLoading(true);
       setSearchingState(true);
     } else {
-      setLoading(false);
       setSearchingState(false);
     }
   };
 
   const clearOnClick = () => {
     setInputSearchValue("");
-    setLoading(false);
     setSearchingState(false);
   };
 
@@ -46,7 +43,7 @@ const SearchModalComponent: React.FC = () => {
   useEffect(() => {
     if (!modalRef.current) return;
     setModalParentHeight(modalRef.current.clientHeight);
-  }, [modalParentHeight, inputSearchValue]);
+  }, [modalParentHeight, inputSearchValue, loading]);
 
   return (
     <div
@@ -57,7 +54,10 @@ const SearchModalComponent: React.FC = () => {
         className="flex flex-col gap-1 lg:gap-5 text-[18px] md:text-2xl py-5 md:py-7"
         ref={modalRef}
       >
-        <div className="flex gap-2 items-center text-stone-400 px-3 md:px-5 animate-fadeUp" style={{ animationDelay: "0.5s" }}>
+        <div
+          className="flex gap-2 items-center text-stone-400 px-3 md:px-5 animate-fadeUp"
+          style={{ animationDelay: "0.5s" }}
+        >
           <SearchIcon />
           <input
             type="text"
@@ -84,7 +84,10 @@ const SearchModalComponent: React.FC = () => {
         {isSearching && (
           <div className="flex flex-col items-start">
             <SearchResultOptions />
-            <SearchResults />
+            <SearchResults
+              keyword={inputSearchValue}
+              loadingState={{ loading, setLoading }}
+            />
           </div>
         )}
       </div>
