@@ -4,8 +4,15 @@ import PaperClip from "./utils/PaperClip";
 import UserIcon from "./utils/UserIcon";
 import SettingIcon from "./utils/SettingIcon";
 import DynamicNumber from "./DynamicNumber";
+import { TypesCount } from "./SearchResultSection";
 
-const SearchResultOptions: React.FC = () => {
+interface SearchResultOptionsProps {
+  typesCount: TypesCount;
+}
+
+const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
+  typesCount,
+}) => {
   const underlineRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -46,14 +53,14 @@ const SearchResultOptions: React.FC = () => {
         <CustomText
           className="cursor-pointer !text-gray-700"
           onClick={handleUnderlineRef}
-          tagContent={<DynamicNumber end={9} />}
+          tagContent={<DynamicNumber end={typesCount.all} />}
         >
           <span>All</span>
         </CustomText>
         <CustomText
           className="cursor-pointer hidden lg:flex"
           onClick={handleUnderlineRef}
-          tagContent={<DynamicNumber end={9} />}
+          tagContent={<DynamicNumber end={typesCount.files} />}
         >
           <PaperClip />
           <span>Files</span>
@@ -61,7 +68,7 @@ const SearchResultOptions: React.FC = () => {
         <CustomText
           className="cursor-pointer"
           onClick={handleUnderlineRef}
-          tagContent={<DynamicNumber end={9} />}
+          tagContent={<DynamicNumber end={typesCount.users} />}
         >
           <UserIcon />
           <span>People</span>

@@ -13,11 +13,9 @@ const CustomText: React.FC<CustomTextProps> = ({
       onClick={onClick}
     >
       <div className="inline-flex gap-1 items-center">{children}</div>
-      {tagContent && (
-        <div className="flex justify-center px-2 items-center text-gray-400 rounded-lg bg-gray-200 text-sm">
-          {tagContent}
-        </div>
-      )}
+      <div className="flex justify-center px-2 items-center text-gray-400 rounded-lg bg-gray-200 text-sm">
+        {tagContent}
+      </div>
     </div>
   );
 };

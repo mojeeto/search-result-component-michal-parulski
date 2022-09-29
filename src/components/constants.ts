@@ -8,6 +8,7 @@ export type InitialDataType = {
   childsCount: number | null;
 };
 
+
 export const initialData: InitialDataType[] = [
   {
     type: "user",

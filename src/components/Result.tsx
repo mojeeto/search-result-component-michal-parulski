@@ -2,9 +2,9 @@ import React from "react";
 import { InitialDataType } from "./constants";
 import Highlighter from "react-highlight-words";
 import ResultAvatar from "./ResultAvatar";
-import ImageIcon from "./ImageIcon";
+import ImageIcon from "./utils/ImageIcon";
 import FolderIcon from "./utils/FolderIcon";
-import PlayIcon from "./PlayIcon";
+import PlayIcon from "./utils/PlayIcon";
 
 interface ResultProps {
   data: InitialDataType;

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import useKey from "./hooks/useKey";
 import SearchResultOptions from "./SearchResultOptions";
 import SearchResults from "./SearchResults";
+import SearchResultSection from "./SearchResultSection";
 import KeyShape from "./utils/KeyShape";
 import SearchIcon from "./utils/SearchIcon";
 
@@ -82,13 +83,10 @@ const SearchModalComponent: React.FC = () => {
           )}
         </div>
         {isSearching && (
-          <div className="flex flex-col items-start">
-            <SearchResultOptions />
-            <SearchResults
-              keyword={inputSearchValue}
-              loadingState={{ loading, setLoading }}
-            />
-          </div>
+          <SearchResultSection
+            loadingState={{ loading, setLoading }}
+            keyword={inputSearchValue}
+          />
         )}
       </div>
     </div>

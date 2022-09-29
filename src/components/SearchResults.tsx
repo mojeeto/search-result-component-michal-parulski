@@ -1,42 +1,25 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { initialData, InitialDataType } from "./constants";
+import React from "react";
+import { InitialDataType } from "./constants";
 import Result from "./Result";
 import ResultSkeleton from "./ResultSkeleton";
 
 interface SearchResultProps {
   keyword: string;
-  loadingState: {
-    loading: boolean;
-    setLoading: Dispatch<SetStateAction<boolean>>;
-  };
+  loading: boolean;
+  data: InitialDataType[];
 }
 
 const SearchResults: React.FC<SearchResultProps> = ({
   keyword,
-  loadingState,
+  loading,
+  data,
 }) => {
-  const [data, setData] = useState<InitialDataType[]>([]);
-  useEffect(() => {
-    loadingState.setLoading(true);
-    const handler = () => {
-      const finalData = initialData.filter(
-        (data) => data.name.search(new RegExp(keyword, "i")) !== -1
-      );
-      setData(finalData);
-      loadingState.setLoading(false);
-    };
-    const timeout = setTimeout(handler, 2000);
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [keyword]);
-
   return (
     <div
       className="flex flex-col w-full justify-center px-5 md:px-8 pt-0 pb-0 divide-y-2 divide-gray-100 animate-fadeUp"
       style={{ animationDelay: "0.6s" }}
     >
-      {loadingState.loading ? (
+      {loading ? (
         <ResultSkeleton />
       ) : (
         data.map((d) => {

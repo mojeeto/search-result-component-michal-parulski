@@ -13,10 +13,13 @@ const DynamicNumber: React.FC<DynamicNumberProps> = ({ end }) => {
         if (prevState !== end) {
           return prevState + 1;
         }
-        clearInterval(interval);
         return prevState;
       });
     }, 150);
+    return () => {
+      clearInterval(interval);
+      setNumber(0);
+    };
   }, [end]);
 
   return <span>{number}</span>;
