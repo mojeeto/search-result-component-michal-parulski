@@ -25,17 +25,17 @@ const Result: React.FC<ResultProps> = ({ data, keyword }) => {
   const { id, name, childsCount, avatar, where, state, type } = data;
 
   return (
-    <div className="flex items-center gap-2 py-3 md:py-4">
+    <div className="flex items-center gap-2 py-4">
       <ResultAvatar avatar={avatar} alt={name} icon={iconFinder(type)} />
       <div className="flex flex-col">
-        <span className="text-sm md:text-xl">
+        <span className="text-sm md:text-lg">
           <Highlighter
             searchWords={[keyword]}
             autoEscape={true}
             textToHighlight={name}
           />
         </span>
-        <span className="text-base text-gray-400">
+        <span className="text-xs md:text-base text-gray-400">
           {where ? `${where} • ${state}` : state}
         </span>
       </div>

@@ -8,7 +8,7 @@ interface ResultAvatarProps {
 
 const ResultAvatar: React.FC<ResultAvatarProps> = ({ avatar, alt, icon }) => {
   return (
-    <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg overflow-hidden">
+    <div className="w-11 h-11 rounded-lg overflow-hidden">
       {avatar ? (
         <img src={avatar} alt={alt} />
       ) : (

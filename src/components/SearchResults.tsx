@@ -33,7 +33,7 @@ const SearchResults: React.FC<SearchResultProps> = ({
 
   return (
     <div
-      className="flex flex-col w-full justify-center px-5 pt-0 pb-0 divide-y-2 divide-gray-200 animate-fadeUp"
+      className="flex flex-col w-full justify-center px-5 md:px-8 pt-0 pb-0 divide-y-2 divide-gray-100 animate-fadeUp"
       style={{ animationDelay: "0.6s" }}
     >
       {loadingState.loading ? (

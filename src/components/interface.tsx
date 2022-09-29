@@ -8,6 +8,6 @@ export interface KeyShapeProps {
 export interface CustomTextProps {
   children: React.ReactNode;
   className?: string;
-  tagContent?: string;
+  tagContent?: React.ReactNode;
   onClick?: React.MouseEventHandler;
 }

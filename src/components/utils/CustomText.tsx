@@ -4,7 +4,7 @@ import { CustomTextProps } from "components/interface";
 const CustomText: React.FC<CustomTextProps> = ({
   children,
   className,
-  tagContent = "0",
+  tagContent,
   onClick,
 }) => {
   return (
