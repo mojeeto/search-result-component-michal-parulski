@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { InitialDataType } from "./constants";
 import Highlighter from "react-highlight-words";
 import ResultAvatar from "./ResultAvatar";
@@ -18,15 +18,37 @@ function iconFinder(type: "image" | "folder" | "video" | "user") {
     return <FolderIcon />;
   } else if (type === "video") {
     return <PlayIcon />;
-  } return null;
+  }
+  return null;
 }
 
+export type StateType = null | "active" | "notActive" | "busy";
+
 const Result: React.FC<ResultProps> = ({ data, keyword }) => {
-  const { id, name, childsCount, avatar, where, state, type } = data;
+  const [userState, setUserState] = useState<StateType>(null);
+  const { name, childsCount, avatar, where, state, type } = data;
+
+  useEffect(() => {
+    const split = state.split(" ");
+    if (split[0] === "Unactived") {
+      setUserState("notActive");
+    } else if (split[0] === "Active") {
+      if (split[1] === "Now") {
+        setUserState("active");
+      } else {
+        setUserState("busy");
+      }
+    }
+  }, [state]);
 
   return (
     <div className="flex items-center gap-2 py-4">
-      <ResultAvatar avatar={avatar} alt={name} icon={iconFinder(type)} />
+      <ResultAvatar
+        avatar={avatar}
+        alt={name}
+        icon={iconFinder(type)}
+        state={userState}
+      />
       <div className="flex flex-col">
         <span className="text-sm md:text-lg">
           <Highlighter
