@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import CustomText from "./utils/CustomText";
 import PaperClip from "./utils/PaperClip";
 import UserIcon from "./utils/UserIcon";
-import SettingIcon from "./utils/SettingIcon";
 import DynamicNumber from "./DynamicNumber";
 import { TypesCount } from "./SearchResultSection";
+import SettingOption from "./SettingOption";
 
 interface SearchResultOptionsProps {
   typesCount: TypesCount;
@@ -81,9 +81,7 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
           ref={underlineRef}
         ></div>
       </div>
-      <div>
-        <SettingIcon />
-      </div>
+      <SettingOption />
     </div>
   );
 };

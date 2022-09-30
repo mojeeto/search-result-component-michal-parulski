@@ -1,6 +1,10 @@
+import { IconProps } from "components/interface";
 import React from "react";
 
-const SettingIcon: React.FC = () => {
+const SettingIcon: React.FC<IconProps<SVGSVGElement>> = ({
+  className,
+  onClick,
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +12,8 @@ const SettingIcon: React.FC = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className={`w-6 h-6 ${className}`}
+      onClick={onClick}
     >
       <path
         strokeLinecap="round"
@@ -23,6 +28,5 @@ const SettingIcon: React.FC = () => {
     </svg>
   );
 };
-
 
 export default SettingIcon;

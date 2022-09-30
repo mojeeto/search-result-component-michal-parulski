@@ -1,7 +1,8 @@
 import React from "react";
 
-export interface IconProps {
+export interface IconProps<T = HTMLElement> {
   className?: string;
+  onClick?: React.MouseEventHandler<T>;
 }
 
 export interface KeyShapeProps {
