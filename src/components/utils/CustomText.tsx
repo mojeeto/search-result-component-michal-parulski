@@ -9,7 +9,7 @@ const CustomText: React.FC<CustomTextProps> = ({
 }) => {
   return (
     <div
-      className={`flex gap-2 items-center text-gray-400 ${className}`}
+      className={`flex gap-2 items-center ${className}`}
       onClick={onClick}
     >
       <div className="inline-flex gap-1 items-center">{children}</div>

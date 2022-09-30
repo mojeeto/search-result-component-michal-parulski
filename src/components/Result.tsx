@@ -5,6 +5,7 @@ import ResultAvatar from "./ResultAvatar";
 import ImageIcon from "./utils/ImageIcon";
 import FolderIcon from "./utils/FolderIcon";
 import PlayIcon from "./utils/PlayIcon";
+import CustomText from "./utils/CustomText";
 
 interface ResultProps {
   data: InitialDataType;
@@ -50,13 +51,16 @@ const Result: React.FC<ResultProps> = ({ data, keyword }) => {
         state={userState}
       />
       <div className="flex flex-col">
-        <span className="text-sm md:text-lg">
+        <CustomText
+          className="text-sm md:text-lg"
+          tagContent={childsCount && `${childsCount} Files`}
+        >
           <Highlighter
             searchWords={[keyword]}
             autoEscape={true}
             textToHighlight={name}
           />
-        </span>
+        </CustomText>
         <span className="text-xs md:text-base text-gray-400">
           {where ? `${where} • ${state}` : state}
         </span>

@@ -49,7 +49,10 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
       className="hidden lg:flex items-center border-b-2 text-[16px] md:text-lg justify-between w-full px-8 animate-fadeUp"
       style={{ animationDelay: "0.5s" }}
     >
-      <div className="flex items-center gap-5 relative pb-1" ref={listRef}>
+      <div
+        className="flex items-center gap-5 relative pb-1 text-gray-400 "
+        ref={listRef}
+      >
         <CustomText
           className="cursor-pointer !text-gray-700"
           onClick={handleUnderlineRef}
