@@ -1,5 +1,8 @@
-import React from 'react';
+import React from "react";
 
+export interface IconProps {
+  className?: string;
+}
 
 export interface KeyShapeProps {
   character: string;

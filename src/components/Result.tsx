@@ -28,7 +28,15 @@ export type StateType = null | "active" | "notActive" | "busy";
 
 const Result: React.FC<ResultProps> = ({ data, keyword }) => {
   const [userState, setUserState] = useState<StateType>(null);
+  const [optionsShow, setOptionsShow] = useState<boolean>(false);
   const { name, childsCount, avatar, where, state, type } = data;
+
+  const onMouseOver = () => {
+    setOptionsShow(true);
+  };
+  const onMouseLeave = () => {
+    setOptionsShow(false);
+  };
 
   useEffect(() => {
     const split = state.split(" ");
@@ -44,7 +52,11 @@ const Result: React.FC<ResultProps> = ({ data, keyword }) => {
   }, [state]);
 
   return (
-    <div className="flex items-center justify-between py-4 px-5 md:px-8 ">
+    <div
+      className="flex items-center justify-between py-4 px-5 md:px-8 transition-colors hover:bg-gray-100 cursor-pointer"
+      onMouseOver={onMouseOver}
+      onMouseLeave={onMouseLeave}
+    >
       <div className="flex items-center gap-2">
         <ResultAvatar
           avatar={avatar}
@@ -68,7 +80,7 @@ const Result: React.FC<ResultProps> = ({ data, keyword }) => {
           </span>
         </div>
       </div>
-      <ResultOptions />
+      {optionsShow && <ResultOptions className="hidden md:flex" />}
     </div>
   );
 };
