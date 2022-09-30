@@ -6,6 +6,7 @@ import ImageIcon from "./utils/ImageIcon";
 import FolderIcon from "./utils/FolderIcon";
 import PlayIcon from "./utils/PlayIcon";
 import CustomText from "./utils/CustomText";
+import ResultOptions from "./ResultOptions";
 
 interface ResultProps {
   data: InitialDataType;
@@ -43,28 +44,31 @@ const Result: React.FC<ResultProps> = ({ data, keyword }) => {
   }, [state]);
 
   return (
-    <div className="flex items-center gap-2 py-4">
-      <ResultAvatar
-        avatar={avatar}
-        alt={name}
-        icon={iconFinder(type)}
-        state={userState}
-      />
-      <div className="flex flex-col">
-        <CustomText
-          className="text-sm md:text-lg"
-          tagContent={childsCount && `${childsCount} Files`}
-        >
-          <Highlighter
-            searchWords={[keyword]}
-            autoEscape={true}
-            textToHighlight={name}
-          />
-        </CustomText>
-        <span className="text-xs md:text-base text-gray-400">
-          {where ? `${where} • ${state}` : state}
-        </span>
+    <div className="flex items-center justify-between py-4 px-5 md:px-8 ">
+      <div className="flex items-center gap-2">
+        <ResultAvatar
+          avatar={avatar}
+          alt={name}
+          icon={iconFinder(type)}
+          state={userState}
+        />
+        <div className="flex flex-col">
+          <CustomText
+            className="text-sm md:text-lg"
+            tagContent={childsCount && `${childsCount} Files`}
+          >
+            <Highlighter
+              searchWords={[keyword]}
+              autoEscape={true}
+              textToHighlight={name}
+            />
+          </CustomText>
+          <span className="text-xs md:text-base text-gray-400">
+            {where ? `${where} • ${state}` : state}
+          </span>
+        </div>
       </div>
+      <ResultOptions />
     </div>
   );
 };
