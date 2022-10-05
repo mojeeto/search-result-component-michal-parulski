@@ -8,7 +8,6 @@ export type InitialDataType = {
   childsCount: number | null;
 };
 
-
 export const initialData: InitialDataType[] = [
   {
     type: "user",
@@ -16,7 +15,7 @@ export const initialData: InitialDataType[] = [
     name: "Randall Johnsson",
     where: null,
     state: "Active Now",
-    avatar: "assets/users/Randall Johnsson.jpg",
+    avatar: '/assets/users/Randall Johnsson.jpg',
     childsCount: null,
   },
   {

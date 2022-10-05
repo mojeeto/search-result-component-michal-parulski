@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import useKey from "./hooks/useKey";
-import SearchResultOptions from "./SearchResultOptions";
-import SearchResults from "./SearchResults";
 import SearchResultSection from "./SearchResultSection";
 import KeyShape from "./utils/KeyShape";
 import SearchIcon from "./utils/SearchIcon";
@@ -48,7 +46,7 @@ const SearchModalComponent: React.FC = () => {
 
   return (
     <div
-      className="w-[350px] md:w-[550px] bg-white rounded-xl transition-[height] duration-1000 shadow-stone-400 shadow-md h-[88pxed"
+      className="w-[350px] md:w-[550px] bg-white rounded-xl transition-[height] duration-1000 shadow-stone-400 shadow-md h-[88px] my-10"
       style={{ height: `${modalParentHeight}px` }}
     >
       <div
