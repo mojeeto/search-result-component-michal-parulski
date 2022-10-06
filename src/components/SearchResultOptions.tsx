@@ -46,7 +46,7 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
 
   return (
     <div
-      className="hidden lg:flex items-center border-b-2 text-[16px] md:text-lg justify-between w-full px-8 animate-fadeUp"
+      className="hidden lg:flex items-center border-b-2 text-[16px] md:text-lg justify-between w-full px-8 animate-fadeUp z-10"
       style={{ animationDelay: "0.5s" }}
     >
       <div

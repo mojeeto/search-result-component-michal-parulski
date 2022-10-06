@@ -1,6 +1,7 @@
+import { IconProps } from "components/interface";
 import React from "react";
 
-const UserIcon: React.FC = () => {
+const UserIcon: React.FC<IconProps<SVGSVGElement>> = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +9,7 @@ const UserIcon: React.FC = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-5 h-5 hidden md:block"
+      className={`w-5 h-5 hidden md:block ${className}`}
     >
       <path
         strokeLinecap="round"

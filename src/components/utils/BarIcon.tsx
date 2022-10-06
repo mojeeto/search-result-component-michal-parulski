@@ -1,9 +1,7 @@
 import { IconProps } from "components/interface";
 import React from "react";
 
-const PaperClip: React.FC<IconProps<SVGSVGElement>> = ({
-  className
-}) => {
+const BarIcon: React.FC<IconProps<SVGSVGElement>> = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,15 +9,15 @@ const PaperClip: React.FC<IconProps<SVGSVGElement>> = ({
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`w-5 h-5 hidden md:block ${className}`}
+      className={`w-5 h-5 ${className}`}
     >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
       />
     </svg>
   );
 };
 
-export default PaperClip;
+export default BarIcon;

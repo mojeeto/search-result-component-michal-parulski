@@ -11,6 +11,7 @@ export interface KeyShapeProps {
 
 export interface CustomTextProps {
   children: React.ReactNode;
+  childrenClassName?: string;
   className?: string;
   tagContent?: React.ReactNode;
   onClick?: React.MouseEventHandler;

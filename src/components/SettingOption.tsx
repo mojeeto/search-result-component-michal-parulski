@@ -1,6 +1,11 @@
-import { Menu, Transition } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import SettingIcon from "./utils/SettingIcon";
+import Option from "./Option";
+import CustomText from "./utils/CustomText";
+import PaperClip from "./utils/PaperClip";
+import UserIcon from "./utils/UserIcon";
+import ChatIcon from "./utils/ChatIcon";
+import BarIcon from "./utils/BarIcon";
 
 const SettingOption: React.FC = () => {
   const [isActive, setState] = useState<boolean>(false);
@@ -11,29 +16,42 @@ const SettingOption: React.FC = () => {
   };
 
   return (
-    <Menu as="div" className="relative text-left">
-      <Menu.Button className="hover:bg-gray-100 p-0.5 rounded-lg">
+    <div className="relative">
+      <button onClick={onClick} className="hover:bg-gray-100 rounded-lg p-1">
         <SettingIcon
           className={`transition-transform stroke-gray-400 ${isActive ? "rotate-[90deg]" : "rotate-0"
             }`}
-          onClick={onClick}
         />
-      </Menu.Button>
-      <Transition as={Fragment}>
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <Menu.Item>
-            {({ active }) => (
-              <button
-                className={`z-10 ${active ? "bg-violet-500 text-white" : "text-gray-900"
-                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-              >
-                Edit
-              </button>
-            )}
-          </Menu.Item>
-        </Menu.Items>
-      </Transition>
-    </Menu>
+      </button>
+      {isActive && (
+        <div className="absolute p-1 right-0 flex flex-col bg-white z-10 rounded-lg border-[1px] border-gray-300 shadow-md shadow-gray-300">
+          <Option>
+            <CustomText childrenClassName="gap-2">
+              <PaperClip className="stroke-gray-400" />
+              <span>Files</span>
+            </CustomText>
+          </Option>
+          <Option>
+            <CustomText childrenClassName="gap-2">
+              <UserIcon className="stroke-gray-400" />
+              <span>People</span>
+            </CustomText>
+          </Option>
+          <Option>
+            <CustomText childrenClassName="gap-2">
+              <ChatIcon className="stroke-gray-400" />
+              <span>Chats</span>
+            </CustomText>
+          </Option>
+          <Option>
+            <CustomText childrenClassName="gap-2">
+              <BarIcon className="stroke-gray-400" />
+              <span>Lists</span>
+            </CustomText>
+          </Option>
+        </div>
+      )}
+    </div>
   );
 };
 
