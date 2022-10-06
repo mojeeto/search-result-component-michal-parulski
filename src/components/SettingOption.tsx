@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SettingIcon from "./utils/SettingIcon";
 import Option from "./Option";
 import CustomText from "./utils/CustomText";
-import PaperClip from "./utils/PaperClip";
-import UserIcon from "./utils/UserIcon";
-import ChatIcon from "./utils/ChatIcon";
-import BarIcon from "./utils/BarIcon";
+import {
+  SearchModalContext,
+  SearchModalOptionType,
+} from "./SearchModalContext";
 
 const SettingOption: React.FC = () => {
   const [isActive, setState] = useState<boolean>(false);
+  const { searchModalData, setSearchModalData } =
+    useContext(SearchModalContext)!;
 
   const onClick = () => {
     setState((prevState) => !prevState);
-    console.log(isActive);
+  };
+
+  const onStateChange = (updatedOption: SearchModalOptionType) => {
+    const newOptionData = searchModalData.options.map((option) => {
+      if (option.id !== updatedOption.id) return option;
+      return updatedOption;
+    });
+    setSearchModalData({ ...searchModalData, options: newOptionData });
   };
 
   return (
@@ -25,30 +34,16 @@ const SettingOption: React.FC = () => {
       </button>
       {isActive && (
         <div className="absolute p-1 right-0 flex flex-col bg-white z-10 rounded-lg border-[1px] border-gray-300 shadow-md shadow-gray-300">
-          <Option>
-            <CustomText childrenClassName="gap-2">
-              <PaperClip className="stroke-gray-400" />
-              <span>Files</span>
-            </CustomText>
-          </Option>
-          <Option>
-            <CustomText childrenClassName="gap-2">
-              <UserIcon className="stroke-gray-400" />
-              <span>People</span>
-            </CustomText>
-          </Option>
-          <Option>
-            <CustomText childrenClassName="gap-2">
-              <ChatIcon className="stroke-gray-400" />
-              <span>Chats</span>
-            </CustomText>
-          </Option>
-          <Option>
-            <CustomText childrenClassName="gap-2">
-              <BarIcon className="stroke-gray-400" />
-              <span>Lists</span>
-            </CustomText>
-          </Option>
+          {searchModalData.options.map((option, index) => {
+            return (
+              <Option data={option} onStateChange={onStateChange} key={index}>
+                <CustomText childrenClassName="gap-2">
+                  {option.icon}
+                  <span>{option.title}</span>
+                </CustomText>
+              </Option>
+            );
+          })}
         </div>
       )}
     </div>

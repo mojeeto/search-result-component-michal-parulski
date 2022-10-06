@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import CustomText from "./utils/CustomText";
 import PaperClip from "./utils/PaperClip";
 import UserIcon from "./utils/UserIcon";
 import DynamicNumber from "./DynamicNumber";
 import { TypesCount } from "./SearchResultSection";
 import SettingOption from "./SettingOption";
+import { SearchModalContext, SearchModalDataType } from "./SearchModalContext";
 
 interface SearchResultOptionsProps {
   typesCount: TypesCount;
@@ -15,6 +16,7 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
 }) => {
   const underlineRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const { searchModalData } = useContext(SearchModalContext)!;
 
   const handleUnderlineRef: React.MouseEventHandler<HTMLDivElement> = (e) => {
     const parent = listRef.current;
@@ -60,22 +62,23 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
         >
           <span>All</span>
         </CustomText>
-        <CustomText
-          className="cursor-pointer hidden lg:flex"
-          onClick={handleUnderlineRef}
-          tagContent={<DynamicNumber end={typesCount.files} />}
-        >
-          <PaperClip />
-          <span>Files</span>
-        </CustomText>
-        <CustomText
-          className="cursor-pointer"
-          onClick={handleUnderlineRef}
-          tagContent={<DynamicNumber end={typesCount.users} />}
-        >
-          <UserIcon />
-          <span>People</span>
-        </CustomText>
+        {searchModalData.options.map((option, index) => {
+          if (option.state) {
+            const counter =
+              option.title === "People" ? typesCount.users : typesCount.files;
+            return (
+              <CustomText
+                className="cursor-pointer"
+                onClick={handleUnderlineRef}
+                tagContent={<DynamicNumber end={counter} />}
+                key={index}
+              >
+                {option.icon}
+                <span>{option.title}</span>
+              </CustomText>
+            );
+          }
+        })}
         <div
           className="border-b-2 border-black w-[57px] bg-black absolute -bottom-0.5 left-[-2.5px] transition-all"
           ref={underlineRef}
