@@ -26,7 +26,7 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
     const uWidth = target.offsetWidth + 5;
     const targetXPosition = target.getBoundingClientRect().x;
     const parentXPosition = parent.getBoundingClientRect().x;
-    const uXPosition = targetXPosition - parentXPosition - 2.5;
+    const uXPosition = targetXPosition - parentXPosition + 28;
     underline.style.width = `${uWidth}px`;
     underline.style.left = `${uXPosition}px`;
 
@@ -46,11 +46,11 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
 
   return (
     <div
-      className="hidden lg:flex items-center border-b-2 text-[16px] md:text-lg justify-between w-full px-8 animate-fadeUp z-10"
+      className="hidden lg:flex items-center border-b-2 text-[16px] md:text-lg justify-between w-full px-8 animate-fadeUp relative z-10"
       style={{ animationDelay: "0.5s" }}
     >
       <div
-        className="flex items-center gap-5 relative pb-1 text-gray-400 overflow-x-scroll scrollbar-hide"
+        className="flex items-center gap-5 pb-1 text-gray-400 scrollbar-hide overflow-x-scroll"
         ref={listRef}
       >
         <CustomText
@@ -76,11 +76,11 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
             </CustomText>
           );
         })}
-        <div
-          className="border-b-2 border-black w-[57px] bg-black absolute -bottom-0.5 left-[-2.5px] transition-all"
-          ref={underlineRef}
-        ></div>
       </div>
+      <div
+        className="border-b-2 border-black w-[57px] bg-black absolute transition-all -bottom-0.5 left-7"
+        ref={underlineRef}
+      ></div>
       <SettingOption />
     </div>
   );
