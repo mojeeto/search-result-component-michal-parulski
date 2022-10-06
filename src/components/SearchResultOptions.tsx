@@ -1,11 +1,9 @@
 import React, { useContext, useRef } from "react";
 import CustomText from "./utils/CustomText";
-import PaperClip from "./utils/PaperClip";
-import UserIcon from "./utils/UserIcon";
 import DynamicNumber from "./DynamicNumber";
 import { TypesCount } from "./SearchResultSection";
 import SettingOption from "./SettingOption";
-import { SearchModalContext, SearchModalDataType } from "./SearchModalContext";
+import { SearchModalContext } from "./SearchModalContext";
 
 interface SearchResultOptionsProps {
   typesCount: TypesCount;
@@ -52,7 +50,7 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
       style={{ animationDelay: "0.5s" }}
     >
       <div
-        className="flex items-center gap-5 relative pb-1 text-gray-400 "
+        className="flex items-center gap-5 relative pb-1 text-gray-400 overflow-x-scroll scrollbar-hide"
         ref={listRef}
       >
         <CustomText
@@ -63,21 +61,20 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
           <span>All</span>
         </CustomText>
         {searchModalData.options.map((option, index) => {
-          if (option.state) {
-            const counter =
-              option.title === "People" ? typesCount.users : typesCount.files;
-            return (
-              <CustomText
-                className="cursor-pointer"
-                onClick={handleUnderlineRef}
-                tagContent={<DynamicNumber end={counter} />}
-                key={index}
-              >
-                {option.icon}
-                <span>{option.title}</span>
-              </CustomText>
-            );
-          }
+          if (!option.state) return;
+          const counter =
+            option.title === "People" ? typesCount.users : typesCount.files;
+          return (
+            <CustomText
+              className="cursor-pointer"
+              onClick={handleUnderlineRef}
+              tagContent={<DynamicNumber end={counter} />}
+              key={index}
+            >
+              {option.icon}
+              <span>{option.title}</span>
+            </CustomText>
+          );
         })}
         <div
           className="border-b-2 border-black w-[57px] bg-black absolute -bottom-0.5 left-[-2.5px] transition-all"
