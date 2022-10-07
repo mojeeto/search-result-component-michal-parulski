@@ -25,7 +25,7 @@ const SettingOption: React.FC = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative z-10">
       <button onClick={onClick} className="hover:bg-gray-100 rounded-lg p-1">
         <SettingIcon
           className={`transition-transform stroke-gray-400 ${isActive ? "rotate-[90deg]" : "rotate-0"

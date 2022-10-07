@@ -45,43 +45,46 @@ const SearchResultOptions: React.FC<SearchResultOptionsProps> = ({
   };
 
   return (
-    <div
-      className="hidden lg:flex items-center border-b-2 text-[16px] md:text-lg justify-between w-full px-8 animate-fadeUp relative z-10"
-      style={{ animationDelay: "0.5s" }}
-    >
+    <div className="flex flex-col w-full">
       <div
-        className="flex items-center gap-5 pb-1 text-gray-400 scrollbar-hide overflow-x-scroll"
-        ref={listRef}
+        className="hidden lg:flex items-center text-[16px] md:text-lg justify-between w-full px-8 animate-fadeUp relative z-10"
+        style={{ animationDelay: "0.5s" }}
       >
-        <CustomText
-          className="cursor-pointer !text-gray-700"
-          onClick={handleUnderlineRef}
-          tagContent={<DynamicNumber end={typesCount.all} />}
+        <div
+          className="flex items-center gap-5 pb-1 text-gray-400 scrollbar-hide overflow-x-scroll"
+          ref={listRef}
         >
-          <span>All</span>
-        </CustomText>
-        {searchModalData.options.map((option, index) => {
-          if (!option.state) return;
-          const counter =
-            option.title === "People" ? typesCount.users : typesCount.files;
-          return (
-            <CustomText
-              className="cursor-pointer"
-              onClick={handleUnderlineRef}
-              tagContent={<DynamicNumber end={counter} />}
-              key={index}
-            >
-              {option.icon}
-              <span>{option.title}</span>
-            </CustomText>
-          );
-        })}
+          <CustomText
+            className="cursor-pointer !text-gray-700"
+            onClick={handleUnderlineRef}
+            tagContent={<DynamicNumber end={typesCount.all} />}
+          >
+            <span>All</span>
+          </CustomText>
+          {searchModalData.options.map((option, index) => {
+            if (!option.state) return;
+            const counter =
+              option.title === "People" ? typesCount.users : typesCount.files;
+            return (
+              <CustomText
+                className="cursor-pointer"
+                onClick={handleUnderlineRef}
+                tagContent={<DynamicNumber end={counter} />}
+                key={index}
+              >
+                {option.icon}
+                <span>{option.title}</span>
+              </CustomText>
+            );
+          })}
+        </div>
+        <div
+          className="border-b-2 border-black w-[57px] bg-black absolute transition-all -bottom-0.5 left-7"
+          ref={underlineRef}
+        ></div>
+        <SettingOption />
       </div>
-      <div
-        className="border-b-2 border-black w-[57px] bg-black absolute transition-all -bottom-0.5 left-7"
-        ref={underlineRef}
-      ></div>
-      <SettingOption />
+      <div className="w-full h-0.5 bg-gray-200"></div>
     </div>
   );
 };
