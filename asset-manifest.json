@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/search-result-component-michal-parulski/static/css/main.d9841444.css",
-    "main.js": "/search-result-component-michal-parulski/static/js/main.d36466d3.js",
+    "main.css": "/search-result-component-michal-parulski/static/css/main.100b60a8.css",
+    "main.js": "/search-result-component-michal-parulski/static/js/main.ee332563.js",
     "index.html": "/search-result-component-michal-parulski/index.html",
-    "main.d9841444.css.map": "/search-result-component-michal-parulski/static/css/main.d9841444.css.map",
-    "main.d36466d3.js.map": "/search-result-component-michal-parulski/static/js/main.d36466d3.js.map"
+    "main.100b60a8.css.map": "/search-result-component-michal-parulski/static/css/main.100b60a8.css.map",
+    "main.ee332563.js.map": "/search-result-component-michal-parulski/static/js/main.ee332563.js.map"
   },
   "entrypoints": [
-    "static/css/main.d9841444.css",
-    "static/js/main.d36466d3.js"
+    "static/css/main.100b60a8.css",
+    "static/js/main.ee332563.js"
   ]
 }
